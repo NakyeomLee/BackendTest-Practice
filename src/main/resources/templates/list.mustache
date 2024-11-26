@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>blog</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>
+            <a href="/">홈</a>
+        </li>
+        <li>
+            <a href="/user/save-form">글쓰기</a>
+        </li>
+    </ul>
+</nav>
+
+<hr>
+
+<section>
+    <!-- 표 -->
+    <table border="1"> <!-- border로 테두리 설정 -->
+        <tr>
+            <!-- 표의 헤더 -->
+            <th>번호</th>
+            <th>이름</th>
+        </tr>
+
+        {{#models}}
+        <tr>
+            <!-- 표의 바디 -->
+            <td>{{id}}</td> <!-- 회원 번호 -->
+            <td>{{name}}</td> <!-- 회원 이름 -->
+            <!-- 상세보기를 클릭하면 해당 회원의 id에 맞는 정보가 담겨진 상세보기 화면이 보여짐 -->
+            <td><a href="/user/{{id}}">상세보기</a></td>
+        </tr>
+        {{/models}}
+    </table>
+</section>
+
+</body>
+</html>

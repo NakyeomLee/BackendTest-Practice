@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'co.kr.metacoding'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Starter AOP : AOP 지원
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '3.3.5'
+
+    // Spring Boot Starter Validation : 객체의 유효성 검사를 간편하게 지원
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.3.5'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Spring Data JPA : JPA 기반으로 DB 접근 간소화해서 DB와의 상호작용 쉬움, CRUD 메서드 자동 생성(Repository)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // Mustache : 템플릿 엔진, 동적 HTML 생성
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    compileOnly 'org.projectlombok:lombok'
+    // Spring Boot DevTools : 개발자가 효율적이고 빠르게 애플리케이션을 개발할 수 있도록 도움 (코드 변경 시 애플리케이션 자동 reload)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
